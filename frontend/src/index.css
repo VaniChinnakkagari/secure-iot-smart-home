@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #010030;
+  --color-brand-violet: #7226FF;
+  --color-brand-purple: #160078;
+  
+  --color-brand-dark: #FFFFFF;
+  --color-brand-muted: #D8B4FE;
+}
+
+@layer base {
+  html, body, #root {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    color: var(--color-brand-dark);
+    font-family: 'Outfit', ui-sans-serif, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    
+    /* The base gradient */
+    background-color: var(--color-brand-bg);
+    
+    /* CRITICAL FOR GLASSMORPHISM: We need visual interest behind the glass */
+    background-image: 
+      radial-gradient(circle at 15% 50%, rgba(114, 38, 255, 0.15), transparent 25%),
+      radial-gradient(circle at 85% 30%, rgba(216, 180, 254, 0.1), transparent 25%);
+    background-attachment: fixed;
+    background-size: cover;
+    
+    overflow-y: auto;      
+    overflow-x: hidden;    
+  }
+}
+
+/* 
+  PREMIUM GLASSMORPHISM UTILITY 
+*/
+@utility glass {
+  /* 1. Semi-transparent background */
+  background-color: rgba(22, 0, 120, 0.2); 
+  
+  /* 2. The magical blur */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  
+  /* 3. Light reflection border (top and left) */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-left: 1px solid rgba(255, 255, 255, 0.15);
+  
+  /* 4. Inner glow and deep shadow */
+  box-shadow: 
+    0 8px 32px 0 rgba(0, 0, 0, 0.4),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05); 
+    
+  border-radius: 16px;
+}
+
+/* Glass hover state */
+@utility glass-hover {
+  transition: all 0.3s ease;
+  &:hover {
+    background-color: rgba(22, 0, 120, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 
+      0 8px 32px 0 rgba(0, 0, 0, 0.5),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* The exact Gradient 4 for buttons */
+@utility bg-gradient-brand {
+  background: linear-gradient(135deg, #7226FF 0%, #160078 100%);
+  box-shadow: 0 4px 15px rgba(114, 38, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #7226FF; }
